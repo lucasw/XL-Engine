@@ -86,12 +86,12 @@ namespace TextSystem
 		//for now just fit the font into a 16 x 16 grid...
 		//so get the largest glyph first...
 		char fontPath[1024];
-		sprintf(fontPath, "UI/fonts/%s", name);
+		sprintf(fontPath, "XLEngine/Text/%s", name);
 
 		FT_Face face;
 		if( FT_New_Face(s_library, fontPath, 0, &face) )
 		{
-			fprintf(stderr, "Could not open font\n");
+			fprintf(stderr, "Could not open font: %s\n", fontPath);
 			return INVALID_FONT_HANDLE;
 		}
 
