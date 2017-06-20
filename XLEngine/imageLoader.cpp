@@ -1,4 +1,6 @@
 #include "imageLoader.h"
+#include <iostream>
+// #include <IL/ilu.h>
 #include <stdlib.h>
 #include <memory.h>
 #include <assert.h>
@@ -86,6 +88,8 @@ bool ImageLoader::loadImage(const char* image)
 	if (loaded == IL_FALSE)
 	{
 		ILenum error = ilGetError();
+    std::cerr << "image loading error: " << image << " " << error << std::endl;
+    // << iluErrorString(error) << std::endl;
 		return false; // Error encountered during loading
 	}
 
