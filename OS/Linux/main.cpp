@@ -1,3 +1,4 @@
+#include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
 #include "../../XLEngine/input.h"
@@ -35,7 +36,14 @@ int getScreenSize(int& width, int& height)
 
 int main(int argc, char **argv)
 {
-    Log::open("Logs/log.txt");
+  if (!Log::open("Logs/log.txt"))
+  {
+    std::cerr << "Could not create log file (you can try to manually create directory)"
+        << std::endl;
+    // TODO(lucasw) instead of quitting, just print all log messages to stdout
+    // instead of trying to write to disk.
+    return -1;
+  }
 	LOG( LOG_MESSAGE, "Log opened." );
 
 	// open a connection to the X server

@@ -1,5 +1,8 @@
 #include "filestream.h"
+#include <errno.h>
+#include <iostream>
 #include <stdio.h>
+#include <string.h>
 #include <assert.h>
 
 //Work buffers for handling special cases like std::string without allocating memory (beyond what the strings needs itself).
@@ -29,9 +32,14 @@ bool FileStream::open(const char* filename, FileMode mode)
 {
 	const char* modeStrings[] = { "rb", "wb", "rb+" };
 	m_file = fopen(filename, modeStrings[mode]);
+  if (!m_file)
+  {
+    std::cerr << strerror(errno) << " : " << filename << std::endl;
+    return false;
+  }
 	m_mode = mode;
 
-	return m_file != NULL;
+	return true;
 }
 
 void FileStream::close()
