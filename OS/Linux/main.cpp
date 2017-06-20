@@ -48,7 +48,7 @@ int main(int argc, char **argv)
     if (s_display == NULL)
     {
         LOG( LOG_ERROR, "could not open display.");
-        return 0;
+        return -2;
     }
 
     //this will give the resolution of the whole virtual screen if using multiple monitors.
@@ -73,7 +73,7 @@ int main(int argc, char **argv)
 	if ( !GameLoop::init(win_param, Settings::getGraphicsDeviceID()) )
 	{
 		LOG( LOG_ERROR, "Engine initialization failed! Could not create a graphics device." );
-		return 0;
+		return -1;
 	}
 
 	Clock::startTimer();
