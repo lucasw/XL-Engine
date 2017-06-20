@@ -183,10 +183,14 @@ GraphicsDeviceID GraphicsDeviceGL_Linux::autodetect(int nParam, void **param)
 
 void GraphicsDeviceGL_Linux::enableVSync(bool enable)
 {
+  #if CAN_TOGGLE_VSYNC
 	const s32 enableValue = 1;//m_adaptiveVsync ? -1 : 1;
 	glXSwapIntervalEXT(s_display, s_win, enable ? enableValue : 0 );
 
 	m_vsyncEnabled = enable;
+  #else
+  LOG(LOG_MESSAGE, "vsync toggle unavailable");
+  #endif
 }
 
 bool GraphicsDeviceGL_Linux::queryExtension(const char* name)
