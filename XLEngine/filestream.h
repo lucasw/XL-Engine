@@ -77,12 +77,17 @@ private:
 template <typename T>
 void FileStream::readType(T* ptr, u32 count)
 {
+    if (!m_file)
+        return;
+
     fread(ptr, sizeof(T), count, m_file);
 }
 
 template <typename T>
 void FileStream::writeType(const T* ptr, u32 count)
 {
+    if (!m_file)
+        return;
     fwrite(ptr, sizeof(T), count, m_file);
 }
 

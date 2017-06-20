@@ -40,9 +40,6 @@ int main(int argc, char **argv)
   {
     std::cerr << "Could not create log file (you can try to manually create directory)"
         << std::endl;
-    // TODO(lucasw) instead of quitting, just print all log messages to stdout
-    // instead of trying to write to disk.
-    return -1;
   }
 	LOG( LOG_MESSAGE, "Log opened." );
 

@@ -110,6 +110,8 @@ size_t FileStream::getSize()
 
 void FileStream::readBuffer(void* ptr, u32 size, u32 count)
 {
+  if (!m_file)
+    return;
 	assert(m_mode == MODE_READ || m_mode == MODE_READWRITE);
 	fread(ptr, size, count, m_file);
 }
@@ -123,6 +125,8 @@ void FileStream::writeBuffer(const void* ptr, u32 size, u32 count)
 //internal
 void FileStream::readTypeString(std::string* ptr, u32 count)
 {
+  if (!m_file)
+    return;
 	assert(m_mode == MODE_READ || m_mode == MODE_READWRITE);
 	assert(count <= 256);
 	//first read the length.
@@ -140,6 +144,8 @@ void FileStream::readTypeString(std::string* ptr, u32 count)
 
 void FileStream::writeTypeString(const std::string* ptr, u32 count)
 {
+  if (!m_file)
+    return;
 	assert(m_mode == MODE_WRITE || m_mode == MODE_READWRITE);
 	assert(count <= 256);
 	//first read the length.
